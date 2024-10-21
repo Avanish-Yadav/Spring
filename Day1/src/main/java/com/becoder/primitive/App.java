@@ -9,5 +9,6 @@ public class App {
 		student st2=context.getBean("st2",student.class);
 		System.out.println(st1);
 		System.out.println(st2);
-	}
+		System.outprintln("Hello Bhai");
+		}
 }
