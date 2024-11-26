@@ -1,0 +1,81 @@
+In this We will learn about the life cycle of spring->
+
+a)Object creation
+b)Value assign
+c)init method()-->there should not be any parameter in init method,the name of init method can be change 
+d)Use them-read and write
+e)destroy method()-->there should not be any parameter destroy method,the name of destroy method can be change
+
+Related file-->Samosa.java  ,  Test.java  ,  config.java
+
+In config.xml-->
+
+<bean class="com.springcore.lifecycle.Samosa" id="s1" init-method="init" destroy-method="destroy">
+
+init method="method name" destroy method="method name"-->method name should be the name which is used in the Samosa class
+
+So when init() and destroy() method is called then output is-
+Setting price
+Inside init method
+Samosa [price=10.0]
+
+Here you will notice that destroy method is not being called I have have used it in bean why?
+For solving this issue We have to enable "PreShutdownHook of ApplicationContext"
+So Instead of using the ApplicationContext I will use the *AbstractAppliactionContext* and import it in the file
+will do the *context.registerShutdownHook()* to registering shutdown hook
+Like this-->
+public class Test {
+	public static void main(String args[]) {
+		-->AbstractApplicationContext context=new ClassPathXmlApplicationContext("com/springcore/lifecycle/config.xml");
+		Samosa s1=(Samosa)context.getBean("s1");
+		System.out.println(s1);
+		-->context.registerShutdownHook();
+	}
+}
+
+Now output is-
+Setting price
+Inside init method
+Samosa [price=10.0]
+Inside destroy method
+
+----------------------------------------------------------------------------------------------------------------------------------
+Implementing life cycle of Spring using --> Interface <--
+Realted file-
+
+We have to implement the two interface in bean
+a)InitializingBean-->provide the functionality of init method
+b)DisposableBean-->  provide the functionality of destroy method
+
+public class Pepsi implements InitializingBean,DisposableBean{
+...
+}
+import the InitializingBean,DisposableBean and over the cursor on InitializingBean,DisposableBean and there will be one option will show up i.e->
+implement unused method-click on it:-thw method will be implement
+    @Override
+	public void afterPropertiesSet() throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("taking pepsi : init"); 
+	}
+
+	@Override
+	public void destroy() throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("going to put bottle after shopping : destroy");
+	}
+	
+context.registerShutdownHook();-> this method is mandatary to enable destroy method
+
+Now output is-
+
+Setting price
+Inside init method
+taking pepsi : init
+Samosa [price=10.0]
+++++++++++++++++++++++++++++++++++
+Pepsi [price=5.0]
+going to put bottle after shopping : destroy
+Inside destroy method
+
+
+
