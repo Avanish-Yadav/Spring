@@ -1,0 +1,71 @@
+->There is the two way to inject the dependency injection
+a)Using getter and setter method
+	->Premitive type
+	->Collection type
+	->Reference type
+b)Using constructor injection
+	->Premitive type
+	->Collection type
+	->Reference type
+Here I will talk about the constructor injection-
+There is two parameter is passed for constructor injection-String name,int persionId 
+In collectionConfig file-
+	   <constructor-arg value="Avanish"/> By defalut it will take as string so it is right
+       <constructor-arg value="10" type="int"/> But here I have explicitily specified that the type of data is int
+       
+But if I will not specify the type of data explicitily then like this-
+	   <constructor-arg value="Avanish"/>
+       <constructor-arg value="10"/> Then spring container will take it as integer because in the constructor parameter it is integer
+       								 spring container is so smart to identify that.
+ 
+ But here There can be some problem- 
+    constructor ambiguity problem->
+    
+    
+    collectionConfig.xml->
+    <bean class="com.springcore.ci.Addition" id="add">
+       <constructor-arg value="10"/>
+       <constructor-arg value="34"/>
+    </bean>
+       
+       
+    In Addition.java-
+    
+    first constructor-private Addition(int a,int b)
+    second constructor-private Addition(double a,double b)
+    When I injected the value then o/p is-  Constructor : int,int
+										    Sum is= 44
+										 
+	When-
+	first constructor-private Addition(double a,double b)
+	second constructor-private Addition(int a,int b)
+    When I injected the value then o/p is-  Constructor : double,double
+										    Sum is= 44
+	So it is depends on order which constructor is first will get executed
+	
+	But what if I add another constructor with type string
+	first constructor-private Addition(double a,double b)
+	second constructor-private Addition(int a,int b)
+	third constructor-private Addition(String a,String b)
+	then output is-Constructor : String,String
+					Sum is= 44
+
+Key Note==>a)When I am injecting the value then By default it is string as you can see that in collectiongConfig.xml file in value we are providing the value in string format
+so in constructor it will firstly search for the string type parameter if it gets then it will execute that part.
+
+b)If there is not string parameter found then it will start execting in order so it may conflict the constructor ambiguity problem so for solving this issue We have to defined
+the type of parameter like this-
+ <bean class="com.springcore.ci.Addition" id="add">
+       <constructor-arg value="10" type="int"/>
+       <constructor-arg value="34" type="int"/>
+    </bean>
+    
+ c)We can also defined the index of value like this-
+ <bean class="com.springcore.ci.Addition" id="add">
+       <constructor-arg value="10" type="int" index="1"/>  assigned on 1st index parameter.
+       <constructor-arg value="34" type="int" index="0"/>  assigned on 2nd index parameter.
+    </bean>
+ 
+    
+	
+ 
