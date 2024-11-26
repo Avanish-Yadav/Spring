@@ -9,11 +9,22 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
         
-        <!-- This is out beans -->
+        <!-- This is our beans -->
        <bean id="student1" class="com.springcore.Student">
         <property name="studentId" value="22344"/>
         <property name="studentName" value="Avanish Yadav"/>
         <property name="studentAddress" value="Delhi"/>
+    </bean>
+    
+    <bean id="student2" class="com.springcore.Student">
+        <property name="studentId" value="33333"/>
+        <property name="studentName" value="Aman"/>
+        <property name="studentAddress" value="Prayagraj"/>
+    </bean>
+    
+    <!--Injectiong value using P schema-->
+    
+    <bean id="student3" class="com.springcore.Student" p:studentId="1111" p:studentName="Shyam" p:studentAddress="VNS">
     </bean>
        
  </beans>
