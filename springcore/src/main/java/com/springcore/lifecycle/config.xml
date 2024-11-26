@@ -9,13 +9,21 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
         
+        <!--
+        
         <bean class="com.springcore.lifecycle.Samosa" id="s1" init-method="init" destroy-method="destroy">
         	<property name="price" value="10"/>
         </bean>
         
         <bean class="com.springcore.lifecycle.Pepsi" id="p1">
         <property name="price" value="5"/>
+        </bean>
         
+        -->
+        <context:annotation-config />
+        
+        <bean class="com.springcore.lifecycle.Example" id="example">
+        <property name="subject" value="Maths"/>
         </bean>
        
  </beans>

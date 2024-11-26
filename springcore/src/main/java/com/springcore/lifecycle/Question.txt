@@ -5,7 +5,8 @@ b)Value assign
 c)init method()-->there should not be any parameter in init method,the name of init method can be change 
 d)Use them-read and write
 e)destroy method()-->there should not be any parameter destroy method,the name of destroy method can be change
-
+---------------------------------------------------------------------------------------------------------------------------------------
+Life cycle of spring using xml -->
 Related file-->Samosa.java  ,  Test.java  ,  config.java
 
 In config.xml-->
@@ -78,4 +79,18 @@ going to put bottle after shopping : destroy
 Inside destroy method
 
 
+-----------------------------------------------------------------------------------------------------
+Implementing life cycle of Spring using Annotaion--> Realted file-Example.java , config.xml, Test.java
+a)PostConstruct-> for init method
+b)PreDestroy ->  for destroy method
 
+In this I have commented the previous bean that I have used for(xml and interface) 
+
+I have created the bean for Example class and set the value but for Implementing the life cycle of spring I made the two method start() and end()
+for enable the start() and end() method -I have use the Annotaion above these method
+But here I noticed that PostConstruct and PreDestroy annotation are not sujjesting automatically-Why?
+Ans-Because PostConstruct and PreDestroy annotation has been removed after java 9 so if you are using the java version above 9 then it will not the sujjest
+so You have use the additional dependency injection for sujjeting these annotation--go to these website ->"https://www.baeldung.com/spring-postconstruct-predestroy"
+and you will find the annotation.
+Now run it but-Again start() and end() method will not called because this annoation are not enabled so for resolving this issue I have enable the annotation 
+and this will happen if I will add this tag in config.xml file--> <config:annotation-config />
