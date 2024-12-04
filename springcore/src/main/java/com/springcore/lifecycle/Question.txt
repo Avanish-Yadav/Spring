@@ -20,7 +20,7 @@ Setting price
 Inside init method
 Samosa [price=10.0]
 
-Here you will notice that destroy method is not being called I have have used it in bean why?
+Here you will notice that destroy method is not being called while I have used it in bean why?
 For solving this issue We have to enable "PreShutdownHook of ApplicationContext"
 So Instead of using the ApplicationContext I will use the *AbstractAppliactionContext* and import it in the file
 will do the *context.registerShutdownHook()* to registering shutdown hook
@@ -93,4 +93,11 @@ Ans-Because PostConstruct and PreDestroy annotation has been removed after java 
 so You have use the additional dependency injection for sujjeting these annotation--go to these website ->"https://www.baeldung.com/spring-postconstruct-predestroy"
 and you will find the annotation.
 Now run it but-Again start() and end() method will not called because this annoation are not enabled so for resolving this issue I have enable the annotation 
-and this will happen if I will add this tag in config.xml file--> <config:annotation-config />
+and this will happen if I will add this tag in config.xml file--> 
+
+<context:annotation-config />
+
+Now output is->
+starting method
+Example [subject=Maths]
+ending method

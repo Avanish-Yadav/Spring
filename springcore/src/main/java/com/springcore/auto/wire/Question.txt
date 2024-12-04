@@ -1,0 +1,77 @@
+Autowiring in Spring
+>Feature of spring framework in which spring container inject the dependencies automatically.
+>Autowiring can not be used to inject primitive and string values.it works with reference only.
+  A--B
+When spring container link up the one object(A) with another object(B) then it is called the wiring and when 
+spring container automatically linkup with another object then it is caleed the autowiring.
+
+			A-----------B
+			 ____|_____
+			 |         |
+		Manually      Automatically(Autowiring)
+	<ref bean=""/> 				|
+						   _____|_________
+						   |			  |
+						   XML 			Annotations-
+Autowiring Modes->default  (no)				(@Autowired)
+						  (byName)
+						  (byType)
+						  (constructor)
+Deprecated since Spring3--(autodetect)
+
+
+Autowiring Advantages
+-Automatic
+-less code
+
+Autowiring disadvantage
+-No controle of programmer
+It can not used for primitive and string values.
+
+Let's code-Lect - 18
+Realted file-(Emp.java--Address.java--autoconfig.xml)
+---------->byName<----------It checks the reference variable name in bean class.
+In Emp.java I have defined the object name Address.
+autoconfig.xml-->
+
+<bean class="com.springcore.auto.wire.Address" id="address">
+        <property name="street" value="Temp Street"/>
+        <property name="city" value="Delhi"/>
+</bean>
+        
+<bean class="com.springcore.auto.wire.Emp" name="emp1" autowire="byName"/>  -->This bean will execute and while executing it will find that
+there is one object(Address) which reference variable is address and this bean autowire="byName" is used so in autoconfig file it will search that
+there is any bean is created with name address then it will automatically inject the object of address in Emp class.
+
+O/P-->Emp [address=Address [street=Temp Street, city=Delhi]]
+
+Suppose I change the reference variable name from bean class-instead of address change the-address1, then--
+<bean class="com.springcore.auto.wire.Address" id="address1">
+												-------------
+        <property name="street" value="Temp Street"/>
+        <property name="city" value="Delhi"/>
+        </bean>
+        
+        <bean class="com.springcore.auto.wire.Emp" name="emp1" autowire="byName"/>
+        
+O/P=Emp [address=null]
+
+------------------>byType<-------------------It check the object type
+I will change the autowire="byType"
+
+<bean class="com.springcore.auto.wire.Address" id="address1">
+							         ----------
+        <property name="street" value="Temp Street"/>
+        <property name="city" value="Delhi"/>
+        </bean>
+        
+<bean class="com.springcore.auto.wire.Emp" name="emp1" autowire="byType"/>
+It will check that Address is present in the bean or not if yes then automatically
+inject the object in the Emp class.Here the refernce variable name is changed in the bean class
+but it is giving the right output because it is checking byType of object. 
+O/P-Emp [address=Address [street=Temp Street, city=Delhi]] 
+
+
+------------------>constructor<-------------------It will check the constructor of Emp class.
+
+
