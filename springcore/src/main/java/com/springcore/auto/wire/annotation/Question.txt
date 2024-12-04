@@ -18,3 +18,9 @@ In this We will learn about autowired annoation-->
 just put the @Autowired above the either variable name,or constructor or setter method;
 and one thing- >  <context:annotation-config /> in autoconfig file.
 
+Suppose You have created mutiple bean with different id/name then @Autowired annoatation will confuse that which bean have to execute so
+for resolving this problem @Qualifier annotation is used.
+@Qualifier("name/id of bean")-->exp-@Qualifier("address1");
+
+
+
