@@ -1,0 +1,20 @@
+
+
+			A-----------B
+			 ____|_____
+			 |         |
+		Manually      Automatically(Autowiring)
+	<ref bean=""/> 				|
+						   _____|_________
+						   |			  |
+						   XML 			Annotations-(There are three method to use autowired-1(at setter)2.(at variable)3.(at constructor)
+Autowiring Modes->default  (no)				(@Autowired)
+						  (byName)
+						  (byType)
+						  (constructor)
+Deprecated since Spring3--(autodetect)
+
+In this We will learn about autowired annoation-->
+just put the @Autowired above the either variable name,or constructor or setter method;
+and one thing- >  <context:annotation-config /> in autoconfig file.
+
